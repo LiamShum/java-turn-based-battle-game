@@ -5,7 +5,7 @@ public class Pokemon {
 
     // attributes of every pokemon
     private final String name;
-    private final double maxHealth;
+    private final double maxHealth = 500;
     private final String type1; // their element type, decides of 1.5x damage
     private final String type2; // their element type, decides of 1.5x damage
 
@@ -19,7 +19,6 @@ public class Pokemon {
     // Constructor
     public Pokemon(String name, double maxHealth, String type1, String type2) {
         this.name = name;
-        this.maxHealth = maxHealth;
         this.type1 = type1;
         this.type2 = type2;
         this.speed = (int) (Math.random() * 51);
