@@ -17,7 +17,7 @@ public class Pokemon {
     private HashMap<String, Double> moves;
 
     // Constructor
-    public Pokemon(String name, double maxHealth, String type1, String type2) {
+    public Pokemon(String name, String type1, String type2) {
         this.name = name;
         this.type1 = type1;
         this.type2 = type2;
@@ -53,4 +53,7 @@ public class Pokemon {
         return name;
     } // getName()
 
+
+    // toString
+    
 } // Pokemon

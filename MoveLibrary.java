@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MoveLibrary {
@@ -153,7 +154,6 @@ public class MoveLibrary {
         movesByType.put("Fairy", fairy);
     }
 
-
     // get available moves for two types 
     public static HashMap<String, Double> getAvailableMoves(String type1, String type2) {
         HashMap<String, Double> availablemoves = new HashMap<>();
@@ -163,5 +163,10 @@ public class MoveLibrary {
 
         return availablemoves;
 
+    }
+
+    // gets all types
+    public static ArrayList<String> getAllTypes() {
+        return new ArrayList<>(movesByType.keySet());
     }
 }
