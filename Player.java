@@ -6,6 +6,8 @@ public class Player {
     // attributes
     private final String name;
     private ArrayList<Pokemon> team;
+
+    // constructor
     public Player(String name) {
         this.name = name;
         team = new ArrayList<>();

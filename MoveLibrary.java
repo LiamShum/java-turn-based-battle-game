@@ -6,8 +6,7 @@ import java.util.HashMap;
 
 public class MoveLibrary {
 
-    private static final HashMap<String, HashMap<String, Double>> movesByType
-            = new HashMap<>();
+    private static final HashMap<String, HashMap<String, Double>> movesByType = new HashMap<>();
 
     static {
 
