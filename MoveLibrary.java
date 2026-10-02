@@ -1,4 +1,6 @@
-
+/**
+ * This class is meant to hold the library of all the moves in a hashmap, sorted by the type names in the main hashmap
+ */
 import java.util.ArrayList;
 import java.util.HashMap;
 

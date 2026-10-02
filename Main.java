@@ -14,6 +14,7 @@ public class Main {
         String name = sc.nextLine();
         Player player = new Player(name);
 
+        // Steps to create team
         System.out.println("Hello, " + name + ". Please create your team. You may have up to 6 Pokemon.");
         int count = 0;
         String input;
@@ -73,5 +74,6 @@ public class Main {
                 }
             }
         } while (count < 6);
+        // End of team creation
     }
 }

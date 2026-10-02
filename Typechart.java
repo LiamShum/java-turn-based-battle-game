@@ -1,4 +1,7 @@
-
+/**
+ * this class is for hashmap of all the types with a hashmap under it that includes all the numbers of multiplier
+ * that their move will give, depending on how the types match up
+ */
 import java.util.HashMap;
 
 public class Typechart {

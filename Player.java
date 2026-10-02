@@ -1,3 +1,6 @@
+/**
+ * This class is for the Player object that holds name and arraylist of their Pokemon team
+ */
 import java.util.ArrayList;
 public class Player {
     // attributes
