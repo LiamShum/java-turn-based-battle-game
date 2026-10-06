@@ -205,4 +205,9 @@ public class Typechart {
         typeChart.put("Dark", dark);
         typeChart.put("Fairy", fairy);
     }
+
+    // method to get the multiplier 
+    public static double getMultiplier(String attackingType, String defendingType) {
+        return typeChart.get(attackingType).getOrDefault(defendingType, 1.0); // puts default to 1.0 if defending type does not exist in attacking type map
+    }
 }

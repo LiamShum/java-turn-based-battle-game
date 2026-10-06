@@ -6,8 +6,8 @@ public class Pokemon {
     // attributes of every pokemon
     private final String name;
     private final double maxHealth = 500;
-    private final String type1; // their element type, decides of 1.5x damage
-    private final String type2; // their element type, decides of 1.5x damage
+    private final String type1; // their element type
+    private final String type2; // their 2nd element type
 
     private double currentHealth;
     //private double attack;
@@ -36,6 +36,14 @@ public class Pokemon {
 
     public String getType() {
         return type1 + ", " + type2;
+    }
+
+    // get either type 1 or 2
+    public String getType1() {
+        return type1;
+    }
+        public String getType2() {
+        return type2;
     }
     // setters
 

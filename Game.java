@@ -39,6 +39,7 @@ public class Game {
     }
 
     // methods
+    // switch pokemon in your team
     public void switchPokemon() {
         System.out.println("Pick the pokemon to swap with!");
         player.printTeam();
@@ -51,5 +52,13 @@ public class Game {
 
         currentPokemon = newPokemon;
         System.out.println("You switched to " + currentPokemon.getName() + "!");
+    }
+
+    // checking for element, returns damage
+    public double elementDamage(String attacktype, Pokemon defender ) {
+        double multiplier1 = Typechart.getMultiplier(attacktype, defender.getType1());
+        double multiplier2 = Typechart.getMultiplier(attacktype, defender.getType2());
+
+        return multiplier1*multiplier2;
     }
 }
