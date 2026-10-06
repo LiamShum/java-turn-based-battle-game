@@ -7,6 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         // creates player object and name
+
         Scanner sc = new Scanner(System.in);
         System.out.println("Welcome Trainer!");
         System.out.print("What is your name?");

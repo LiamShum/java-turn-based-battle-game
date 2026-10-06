@@ -25,4 +25,13 @@ public class Player {
     public void addPokemon(Pokemon pokemon) {
         team.add(pokemon);
     }
+
+    // print out team by number
+    public void printTeam() {
+        int count = 1;
+        for(Pokemon pokemon : team) {
+            System.out.println(count + ". " + pokemon.getName() + " - " + pokemon.getType());
+            count++;
+        }
+    }
 }
