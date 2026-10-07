@@ -1,4 +1,6 @@
 
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -35,10 +37,31 @@ public class Game {
 
         // Battle loop
         while (currentPokemon != null && cpuCurrentPokemon != null) {
+            do { 
+                System.out.println("1. Attack\n2. Switch Pokemon\n3. My Pokemon Info\n4. CPU Pokemon Info\n5. Team Info");
+                pick = sc.nextInt();
+                if(pick==1) {
+                    attack();
+                }
+                if(pick==2) {
+                    switchPokemon();
+                }
+                if(pick==3) {
+                    currentPokemon.toString();
+                }
+                if(pick==4) {
+                    cpuCurrentPokemon.toString();
+                }
+                if(pick==5) {
+                    player.printTeamStats();
+                }
+            } while (pick == 3 || pick == 4 || pick==5);
+            
         }
     }
 
     // methods
+
     // switch pokemon in your team
     public void switchPokemon() {
         System.out.println("Pick the pokemon to swap with!");
@@ -60,5 +83,16 @@ public class Game {
         double multiplier2 = Typechart.getMultiplier(attacktype, defender.getType2());
 
         return multiplier1*multiplier2;
+    }
+
+    public void attack() {
+        // Convert set into a list so we can access items by index
+        ArrayList<Map.Entry<String, Double>> moveList = new ArrayList<>(currentPokemon.getMoves().entrySet());
+        System.out.println("Pick your move!");
+        for(int n = 0; n < moveList.size(); n++) {
+            Map.Entry<String, Double> entry = moveList.get(n); // map entry keeps all moves as pairs
+            System.out.println((n+1) + ". " + entry.getKey() + " - " + entry.getValue());
+            int movePick = sc.nextInt() - 1;
+        }
     }
 }

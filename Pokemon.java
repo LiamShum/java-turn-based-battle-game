@@ -62,6 +62,13 @@ public class Pokemon {
     } // getName()
 
 
+    // print move names and their damage
+    public HashMap<String, Double> getMoves() {
+        return moves;
+    }
+
     // toString
-    
+    public String toString() {
+        return name + "\nHP: " + currentHealth + "\nTypes: " + type1 + ", " + type2 + "\nSpeed: " + speed;
+    }
 } // Pokemon

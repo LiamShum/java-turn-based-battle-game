@@ -34,4 +34,12 @@ public class Player {
             count++;
         }
     }
+    // print team stats
+        public void printTeamStats() {
+        int count = 1;
+        for(Pokemon pokemon : team) {
+            System.out.println(count + ". " + pokemon.toString());
+            count++;
+        }
+    }
 }
