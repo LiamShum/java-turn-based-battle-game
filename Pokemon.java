@@ -21,6 +21,7 @@ public class Pokemon {
         this.name = name;
         this.type1 = type1;
         this.type2 = type2;
+        this.currentHealth = maxHealth;
         this.speed = (int) (Math.random() * 51);
         moves = new HashMap<>();
     } // Pokemon()
@@ -54,7 +55,7 @@ public class Pokemon {
     }
 
     public void damage(double dmg) {
-        currentHealth -= dmg;
+        currentHealth = Math.max(0, currentHealth - dmg);
     }
 
     public String getName() {

@@ -76,5 +76,12 @@ public class Main {
             }
         } while (count < 6);
         // End of team creation
+
+        // create cpu
+        CPU cpu = new CPU(player);
+
+        // create game
+        Game game = new Game(player,cpu);
+        game.start();
     }
 }

@@ -44,7 +44,12 @@ public class Game {
                     attack();
                 }
                 if(pick==2) {
+                    if(player.getSize()>1) {
                     switchPokemon();
+                    }
+                    else {
+                        System.out.println("No pokemon to switch with.");
+                    }
                 }
                 if(pick==3) {
                     currentPokemon.toString();
@@ -88,11 +93,43 @@ public class Game {
     public void attack() {
         // Convert set into a list so we can access items by index
         ArrayList<Map.Entry<String, Double>> moveList = new ArrayList<>(currentPokemon.getMoves().entrySet());
+        if (moveList.isEmpty()) {
+            System.out.println("This Pokemon has no moves.");
+            return;
+        }
+
         System.out.println("Pick your move!");
         for(int n = 0; n < moveList.size(); n++) {
             Map.Entry<String, Double> entry = moveList.get(n); // map entry keeps all moves as pairs
             System.out.println((n+1) + ". " + entry.getKey() + " - " + entry.getValue());
-            int movePick = sc.nextInt() - 1;
         }
+
+        int movePick;
+        while (true) { // loop to pick move
+            System.out.print("Choose a move (1-" + moveList.size() + "): ");
+            if (!sc.hasNext()) {
+                return;
+            }
+            if (!sc.hasNextInt()) {
+                sc.next();
+                System.out.println("Please enter a valid move number.");
+                continue;
+            }
+
+            movePick = sc.nextInt() - 1;
+            if (movePick >= 0 && movePick < moveList.size()) {
+                break;
+            }
+            System.out.println("Please choose one of the listed moves.");
+        }
+
+        Map.Entry<String, Double> selectedMove = moveList.get(movePick);  // gets move
+        String moveType = MoveLibrary.getMoveType(selectedMove.getKey()); // finds move type
+        double damage = selectedMove.getValue() * elementDamage(moveType, cpuCurrentPokemon); // gets damage with element multiplier included
+        cpuCurrentPokemon.damage(damage);
+
+        System.out.println(currentPokemon.getName() + " used " + selectedMove.getKey() + "!");
+        System.out.println("Damage: " + damage);
+        System.out.println(cpuCurrentPokemon.getName() + " has " + cpuCurrentPokemon.getHealth() + " HP remaining.");
     }
 }

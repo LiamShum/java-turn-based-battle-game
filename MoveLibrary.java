@@ -166,6 +166,16 @@ public class MoveLibrary {
 
     }
 
+    // Find the attacking type for a move stored in the library.
+    public static String getMoveType(String moveName) {
+        for (String type : movesByType.keySet()) {
+            if (movesByType.get(type).containsKey(moveName)) {
+                return type;
+            }
+        }
+        throw new IllegalArgumentException("Unknown move: " + moveName);
+    }
+
     // gets all types
     public static ArrayList<String> getAllTypes() {
         return new ArrayList<>(movesByType.keySet());

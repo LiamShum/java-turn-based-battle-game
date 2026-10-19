@@ -42,4 +42,10 @@ public class Player {
             count++;
         }
     }
+
+
+    // return size
+    public int getSize() {
+        return team.size();
+    }
 }
