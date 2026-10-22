@@ -1,14 +1,21 @@
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        // creates player object and name
+        try (Scanner sc = new Scanner(System.in)) {
+            play(sc);
+        } catch (NoSuchElementException e) {
+            System.out.println("\nInput closed. Goodbye!");
+        }
+    }
 
-        Scanner sc = new Scanner(System.in);
+    private static void play(Scanner sc) {
+        // creates player object and name
         System.out.println("Welcome Trainer!");
         System.out.print("What is your name?");
         System.out.println();
@@ -32,13 +39,13 @@ public class Main {
 
             // Pick first type
             System.out.print("Pick # of your first type: ");
-            int firstElement = Integer.parseInt(sc.nextLine()) - 1;
+            int firstElement = InputHelper.readChoice(sc, 1, types.size()) - 1;
             String element1 = types.get(firstElement);
             // pick second type
             int secondElement;
             do { // loop to make sure you cant pick same type twice
                 System.out.print("Pick # of your second type: ");
-                secondElement = Integer.parseInt(sc.nextLine()) - 1;
+                secondElement = InputHelper.readChoice(sc, 1, types.size()) - 1;
                 if (secondElement == firstElement) {
                     System.out.println("You cannot pick the same type twice.");
                 }
@@ -59,7 +66,7 @@ public class Main {
                     System.out.println((i + 1) + ". " + moveName + " - " + availableMoves.get(moveName) + " damage");
                 }
                 System.out.print("Pick move #" + (n + 1) + ": ");
-                int move = Integer.parseInt(sc.nextLine()) - 1;
+                int move = InputHelper.readChoice(sc, 1, moveNames.size()) - 1;
                 String moveName = moveNames.get(move);
                 pokemon.setMove(moveName, availableMoves.get(moveName));
                 // Prevent choosing the same move twice
@@ -81,7 +88,7 @@ public class Main {
         CPU cpu = new CPU(player);
 
         // create game
-        Game game = new Game(player,cpu);
+        Game game = new Game(player, cpu, sc);
         game.start();
     }
 }

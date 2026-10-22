@@ -13,18 +13,19 @@ public class Game {
     private Pokemon cpuCurrentPokemon;
 
     private static final Random random = new Random();
-    private final Scanner sc = new Scanner(System.in);
+    private final Scanner sc;
 
-    public Game(Player player, CPU cpu) {
+    public Game(Player player, CPU cpu, Scanner sc) {
         this.player = player;
         this.cpu = cpu;
+        this.sc = sc;
     }
 
     public void start() {
         // Player picks first Pokemon
         System.out.println("Choose your first Pokemon!");
         player.printTeam();
-        int pick = sc.nextInt() - 1;
+        int pick = InputHelper.readChoice(sc, 1, player.getSize()) - 1;
         // Remove chosen Pokemon from team and make it active
         currentPokemon = player.getTeam().remove(pick);
         // CPU picks random Pokemon
@@ -42,7 +43,7 @@ public class Game {
         while (currentPokemon != null && cpuCurrentPokemon != null) {
             do {
                 System.out.println("1. Attack\n2. Switch Pokemon\n3. My Pokemon Info\n4. CPU Pokemon Info\n5. Team Info");
-                pick = sc.nextInt();
+                pick = InputHelper.readChoice(sc, 1, 5);
                 if (pick == 1) {
                     attack();
                 }
@@ -73,7 +74,7 @@ public class Game {
     public void switchPokemon() {
         System.out.println("Pick the pokemon to swap with!");
         player.printTeam();
-        int pick = sc.nextInt() - 1;
+        int pick = InputHelper.readChoice(sc, 1, player.getSize()) - 1;
         // removing new pokemon on team
         Pokemon newPokemon = player.getTeam().remove(pick);
 
@@ -106,24 +107,8 @@ public class Game {
             System.out.println((n + 1) + ". " + entry.getKey() + " - " + entry.getValue());
         }
 
-        int movePick;
-        while (true) { // loop to pick move
-            System.out.print("Choose a move (1-" + moveList.size() + "): ");
-            if (!sc.hasNext()) {
-                return;
-            }
-            if (!sc.hasNextInt()) {
-                sc.next();
-                System.out.println("Please enter a valid move number.");
-                continue;
-            }
-
-            movePick = sc.nextInt() - 1;
-            if (movePick >= 0 && movePick < moveList.size()) {
-                break;
-            }
-            System.out.println("Please choose one of the listed moves.");
-        }
+        System.out.print("Choose a move (1-" + moveList.size() + "): ");
+        int movePick = InputHelper.readChoice(sc, 1, moveList.size()) - 1;
         boolean cpuFirst = cpuCurrentPokemon.getSpeed() > currentPokemon.getSpeed();
         Pokemon attackingPokemon = currentPokemon;
         if (cpuFirst) {
@@ -190,7 +175,7 @@ public class Game {
             } else {
                 System.out.println("Choose your next Pokemon!");
                 player.printTeam();
-                int pick = sc.nextInt() - 1;
+                int pick = InputHelper.readChoice(sc, 1, player.getSize()) - 1;
                 currentPokemon = player.getTeam().remove(pick);
                 System.out.println("You sent out " + currentPokemon.getName() + "!");
             }
