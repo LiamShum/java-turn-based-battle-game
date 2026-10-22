@@ -34,6 +34,25 @@ public class CPU extends Player {
         }
     }
 
+    // Return a replacement, switch with a 10% chance, or keep the current Pokemon to attack.
+    public Pokemon randomChoice(Pokemon currentPokemon) {
+        if (currentPokemon == null) {
+            if (getTeam().isEmpty()) {
+                return null;
+            }
+            return getTeam().remove(random.nextInt(getSize()));
+        }
+
+        // The active Pokemon is outside the team, so this checks the remaining bench.
+        if (getSize() > 1 && random.nextInt(10) == 0) {
+            Pokemon nextPokemon = getTeam().remove(random.nextInt(getSize()));
+            addPokemon(currentPokemon);
+            return nextPokemon;
+        }
+
+        return currentPokemon;
+    }
+
     // method to create random pokmeon
     public Pokemon createRandomPokemon() {
         // need all types
